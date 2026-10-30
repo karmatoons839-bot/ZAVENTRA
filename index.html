@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111827"><meta name="description" content="Zaventra — your world, connected. A messaging platform prototype.">
+<title>Zaventra — Your World, Connected</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+ <div class="brand"><div class="brand-mark">Z</div><div><strong>Zaventra</strong><small>Your world, connected</small></div></div>
+ <div id="accountBadge" class="account-badge"><span class="dot"></span><span>Not signed in</span></div>
+ <nav>
+  <button class="nav-item active" data-view="chats">◫ <span>Chats</span></button>
+  <button class="nav-item" data-view="groups">◉ <span>Groups</span></button>
+  <button class="nav-item" data-view="bots">✳ <span>Bot Studio</span></button>
+  <button class="nav-item owner-only hidden" data-view="control">⌘ <span>Owner Control</span></button>
+  <button class="nav-item" data-view="settings">⚙ <span>Settings</span></button>
+ </nav>
+ <div class="sidebar-bottom"><span class="status-pill">● Prototype mode</span><small>Independent messaging platform</small></div>
+</aside>
+<main class="main">
+ <header class="topbar"><div><div class="eyebrow">MESSAGING, REIMAGINED</div><h1 id="pageTitle">Your conversations</h1></div><div class="top-actions"><span id="userLabel" class="user-label">Guest</span><button id="loginOpen" class="button primary">Sign in</button><button id="logoutBtn" class="button ghost hidden">Log out</button></div></header>
+ <section id="loginPanel" class="login-panel">
+  <div class="login-copy"><div class="eyebrow">WELCOME TO ZAVENTRA</div><h2>Make room for<br><span>real connection.</span></h2><p>Private conversations, communities and your own bots — under one roof.</p><div class="feature-row"><span>✓ Phone verification</span><span>✓ Groups</span><span>✓ Bot Studio</span></div></div>
+  <form id="phoneForm" class="login-card"><div class="card-icon">✦</div><h3>Sign in with phone</h3><p>We’ll verify that you control this number.</p><label for="phone">Phone number</label><input id="phone" placeholder="+91XXXXXXXXXX" autocomplete="tel" required pattern="\\+[1-9][0-9]{7,14}"><button class="button primary full" type="submit">Send verification code</button><div id="otpBox" class="hidden"><label for="otp">6-digit code</label><input id="otp" inputmode="numeric" maxlength="6" placeholder="000000"><button class="button primary full" type="button" id="verifyBtn">Verify and continue</button></div><div id="authMessage" class="message"></div><small class="fine-print">Local demo mode only. Production login needs a real SMS provider.</small></form>
+ </section>
+ <section id="view-chats" class="view">
+  <div class="welcome-card"><div><div class="eyebrow">YOUR SPACE</div><h2>Good conversations start here.</h2><p>Sign in to open the community, create groups and try the messaging flow.</p></div><div class="orb">Z</div></div>
+  <div class="content-grid"><article class="panel"><div class="panel-heading"><div><h3>Recent conversations</h3><p>Your chats will appear here.</p></div><span class="count" id="groupCount">0</span></div><div id="chatList" class="empty-state"><div class="empty-icon">◫</div><strong>No conversations yet</strong><span>Sign in and join the community to get started.</span></div></article><article class="panel quick-panel"><h3>Explore Zaventra</h3><button class="quick-link" data-view="groups"><span class="quick-icon">◉</span><span><b>Community groups</b><small>Join in and start a conversation</small></span><span>→</span></button><button class="quick-link" data-view="bots"><span class="quick-icon">✳</span><span><b>Build a bot</b><small>Create your own automated helper</small></span><span>→</span></button></article></div>
+ </section>
+ <section id="view-groups" class="view hidden">
+  <div class="section-intro"><div><div class="eyebrow">FIND YOUR PEOPLE</div><h2>Groups & communities</h2><p>Your official community is automatically joined after verified sign-in.</p></div><button class="button primary" id="createGroupOpen">＋ New group</button></div>
+  <div class="panel"><div id="groupsList" class="list-empty">Sign in to see your groups.</div></div>
+  <div id="groupChat" class="panel hidden"><div class="panel-heading"><div><h3 id="activeGroupName">Group chat</h3><p>Messages are saved in the test database.</p></div><span class="status-pill">● Connected</span></div><div id="messages" class="messages"></div><form id="messageForm" class="message-form"><input id="messageInput" maxlength="2000" placeholder="Write a message…" autocomplete="off"><button class="button primary">Send</button></form></div>
+ </section>
+ <section id="view-bots" class="view hidden">
+  <div class="section-intro"><div><div class="eyebrow">AUTOMATION, YOUR WAY</div><h2>Bot Studio</h2><p>Create and manage simple Zaventra bot profiles.</p></div><button class="button primary" id="createBotOpen">＋ Create bot</button></div>
+  <div class="notice"><b>Prototype note</b><span>This creates a saved bot profile. A live bot runtime, commands and optional AI provider integration are future steps.</span></div>
+  <div id="botsList" class="bot-grid"><div class="list-empty">Sign in to manage your bots.</div></div>
+ </section>
+ <section id="view-control" class="view hidden">
+  <div class="section-intro"><div><div class="eyebrow">RESTRICTED AREA</div><h2>Owner Control</h2><p>Private operational overview. Visible to server-authorized Owner only.</p></div><span class="status-pill">🔒 Owner only</span></div>
+  <div id="ownerStats" class="stats-grid"></div><div class="content-grid"><article class="panel"><h3>Recent groups</h3><div id="ownerGroups" class="list-empty">Loading…</div></article><article class="panel"><h3>Activity log</h3><div id="ownerEvents" class="list-empty">Loading…</div></article></div>
+ </section>
+ <section id="view-settings" class="view hidden"><div class="section-intro"><div><div class="eyebrow">YOUR ACCOUNT</div><h2>Settings</h2><p>Prototype preferences and account information.</p></div></div><article class="panel settings-panel"><div class="setting-row"><span><b>Account</b><small id="settingsAccount">Not signed in</small></span><span class="status-pill">Phone login</span></div><div class="setting-row"><span><b>Privacy & safety</b><small>Block/report, deletion and full privacy controls must be completed before public launch.</small></span><span class="status-pill warning">In development</span></div><div class="setting-row"><span><b>App status</b><small>Prototype — not ready for public production use.</small></span><span class="status-pill">Test build</span></div></article></section>
+ <footer>© <span id="year"></span> Zaventra · Prototype build <span class="footer-dot">•</span> Not affiliated with Telegram</footer>
+</main>
+</div>
+<div id="modalBackdrop" class="modal-backdrop hidden"><div class="modal"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
+<div id="toast" class="toast"></div>
+<script src="/socket.io/socket.io.js"></script><script src="/app.js"></script>
+</body></html>
